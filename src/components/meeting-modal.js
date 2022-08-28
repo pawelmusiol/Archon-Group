@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Modal, Input } from "."
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
+
 
 const MeetingModal = ({ Close }) => {
     let Today = new Date()
@@ -13,14 +15,14 @@ const MeetingModal = ({ Close }) => {
     let Max = maxDate()
     const [Day, setDay] = useState(new Date())
     const [Name, setName] = useState("")
-    const [Message, setMessage] = useState("")
-    const [Topic, setTopic] = useState("")
     const [Number, setNumber] = useState("")
     const [Mail, setMail] = useState("")
+    const [Topic, setTopic] = useState("")
     const [Sent, setSent] = useState(false)
 
     const sendMessage = (e) => {
-        console.table([Name, Number, Mail])
+        console.table([Name, Number, Mail, Day])
+        sendData(Day, Name, Number, Mail, Topic)
         e.preventDefault()
         setSent(true)
     }
@@ -34,6 +36,7 @@ const MeetingModal = ({ Close }) => {
                         <Input type="email" placeholder="Mail" value={Mail} setValue={setMail} />
                         {/*<Input type="text" placeholder="Wiadomość" value={Message} setValue={setMessage} />*/}
                         <Input type="tel" placeholder="Numer Kontaktowy" value={Number} setValue={setNumber} />
+                        <Input type="text" placeholder="Temat spotkania" value={Topic} setValue={setTopic} />
                     </div>
                     <Calendar
                         minDate={Today}
@@ -48,6 +51,17 @@ const MeetingModal = ({ Close }) => {
             }
         </Modal>
     )
+}
+
+const sendData = (day, name, number, mail, topic) => {
+    const db = getFirestore();
+    addDoc(collection(db, 'questions'),{
+        date: day,
+        mail: mail,
+        tel: number,
+        name: name,
+        title: topic
+    })
 }
 
 export default MeetingModal

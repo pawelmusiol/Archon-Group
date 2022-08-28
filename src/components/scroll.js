@@ -5,7 +5,6 @@ import { animateScroll as scroll} from "react-scroll"
 
 const scrollToNextSection = () => {
     scroll.scrollTo(window.innerHeight*0.94)
-    console.log("dupa")
 }
 
 const ScrollButton = () => {

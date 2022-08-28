@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import Logo from "../images/logo-archon.png"
-import Backgorund from "../videos/MeetingLq.mp4"
+import Logo from "../images/logo-white.png"
 import { Link, Scroll } from "."
 
 const Landing = ({ Modal, OpenModal, noContent }) => {
@@ -15,7 +14,7 @@ const Landing = ({ Modal, OpenModal, noContent }) => {
         <>
             <div className="landing">
                 <video muted={true} loop ref={videoRef} className="landing-bg">
-                    <source src={Backgorund} type="video/mp4" />
+                    <source src={`../../str_glowna_film.mov`} type="video/mp4" />
                 </video>
                 {!noContent &&
                     <div className="landing-content">
@@ -23,10 +22,10 @@ const Landing = ({ Modal, OpenModal, noContent }) => {
                         <div>
                             <div className="landing-text">
 
-                                <h1>Lorem Ipsum Dolor</h1>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
+                                <h1>Biuro<br /> Wsparcia Biznesu</h1>
+                                <h2>
+                                    Oferujemy wsparcie, którego próżno<br />szukać na Polskim rynku.
+                                </h2>
                                 <Link to="#" onClick={OpenModal} className="landing-button">Umów spotkanie</Link>
                             </div>
                             <Scroll />

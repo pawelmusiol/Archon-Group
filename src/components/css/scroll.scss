@@ -1,13 +1,16 @@
 .scroll{
+    align-self: center;
     display:flex;
     position:relative;
     justify-content: center;
     height: 80px;
-    width: calc(100% - 10vw);
+    margin-left: -10vw;
 }
 
 .scroll a {
     padding-top: 80px;
+    left: 50vw;
+    transform: translateX(-50%);
     position: absolute;
     bottom:0;
 }

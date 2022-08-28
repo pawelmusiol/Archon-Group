@@ -16,10 +16,11 @@ const LinksData = [
         name: "Media",
         to: "/media"
     },
-    {
+     {
         name: "Finanse",
-        to: "/finanse"
-    },
+        to: "/finanse",
+        disabled: true,
+    }, 
 ]
 
 const IndexPage = () => {
@@ -28,7 +29,7 @@ const IndexPage = () => {
         <Layout>
             {ModalOpen && <MeetingModal Close={() => setModalOpen(false)} />}
             <Landing Modal={ModalOpen} OpenModal={() => setModalOpen(true)} />
-            <Introduction>dupa</Introduction>
+            <Introduction/>
             <Links links={LinksData} prefix="/uslugi" />
             <MainSection />
         </Layout>

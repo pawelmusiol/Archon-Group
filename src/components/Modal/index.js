@@ -11,7 +11,6 @@ const Modal = ({ children, Close, title, className, noClose, index, style }) => 
 
     const CloseModal = (e) => {
         if (!noClose) {
-            console.log(e.target.className)
             if (e.target.className === 'modal-close' || e.target.className === 'modal-outer') {
                 Close()
             }

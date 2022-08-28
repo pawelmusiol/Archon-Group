@@ -1,11 +1,18 @@
 // #region Introduction
 
 .introduction-text {
-    max-width: 70%;
-    width: 70%;
+    max-width: 100%;
+    width: 100%;
     min-width: 300px;
     font-size: 2rem;
     font-weight: 300;
+    text-align: center;
+}
+.introduction-about {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 90%;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -23,38 +30,50 @@
     //min-width: 60%;
     max-width: 80%;
     margin: 40px auto;
+    align-items: stretch;
 }
 
 .links a {
+    justify-content: center;
     flex-grow: 1;
-    flex-shrink: 1;
     flex-basis: 0;
     font-size: 1.2rem;
-    display: box;
     border: 1px solid #ccc;
     padding: 7px 20px;
     text-decoration: none;
+    display: flex;
     transition: background-color 0.4s;
-    text-align: center;
     box-shadow: 3px 15px 20px rgb(0 0 0 / 8%);
+    justify-content: center;
+    align-items: center;
 }
 
 .links a:hover {
     background-color: #ffd767;
 }
+.links a p {
+    margin: 0;
+    text-align: center;
+}
 
 .active {
     background-color: #ffca39;
+}
+.disabled {
+    background-color: #eaeaea;
+    color: #aaa !important;
+    pointer-events: none;
 }
 
 .main {
     background-color: #fafafa;
     //width: 100%;
     //max-width: 100%;
+    max-height: min-content;
+    min-height: min-content;
     gap: 0;
     width: 100vw !important;
     max-width: 100vw !important;
-    height: min-content;
 }
 
 .main > div {
@@ -63,8 +82,11 @@
     flex-basis: 0;
     width: 0;
     position: relative;
+    min-height: 100%;
+    width: 100%;
 }
 .main img {
+    flex-shrink: 0;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -77,8 +99,24 @@
 .main-text {
     padding: 100px;
 }
-.main h1{
-    font-weight: 300;
+.main-text h1 {
+    font-weight: 600;
+}
+.main-text p {
+    margin-top: 0;
+    text-align:justify;
+}
+.first-letter {
+    color:#ffca39 !important;
+    font-weight:600;
+    font-size: 2.3rem;
+    line-height: .9;
+    //margin-bottom:-40px;
+}
+.first-letter::after{
+    content: ".";
+    margin-right: 5px;
+
 }
 
 .image-caption {
@@ -90,19 +128,19 @@
     width: 50%;
 }
 
-
-.service-section {
-}
 .service-text {
     padding-right: 50px;
 }
 
-.service-section p {
-    line-height: 1.6;
+.service-section {
+    transition: transform 0.8s;
+    min-width: 80vw;
+    position: absolute;
 }
 
-.service-row {
-    //margin-bottom: 5%;
+.service-section p {
+    line-height: 1.6;
+    letter-spacing: 1px;
 }
 
 .service-image-container {
@@ -123,6 +161,23 @@
     position: relative;
     justify-content: flex-end;
     margin-left: 50px;
+}
+
+.service-introduction {
+    display: grid !important;
+    grid-template-columns: 30% 69.5%;
+    gap: 0.5%;
+    margin: 40px auto !important;
+    align-items: center;
+}
+
+.service-introduction img {
+    width: 100%;
+}
+.service-introduction p {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .floating {
@@ -150,24 +205,30 @@
 }
 
 .carousel {
-    display: grid;
-    grid-template-columns: 100vw 100vw 100vw 100vw;
-    grid-template-rows: 100%;
-    grid-auto-flow: row;
-    transition: all 0.4s;
+    position: relative;
+    width: 80vw;
+    height: 60vh;
+    margin-left: 50%;
+    margin-top: 5%;
+    transform: translate(-50%, -0%);
 }
 
 .service-title {
     font-weight: 400;
 }
 
+.service-subtitle {
+    width: 50%;
+    max-width: 70%;
+    font-weight: 500;
+}
 .contact-box {
     //background-color:#333333;
     //border: 1px solid #eee;
     //box-shadow: 3px 15px 20px rgb(0 0 0 / 8%);
     //padding: 40px;
     //min-width: 150px;
-   //max-width: 100%;
+    //max-width: 100%;
     height: 100%;
 }
 
@@ -190,4 +251,49 @@
     text-align: center;
     border-color: #333;
     color: #333;
+}
+
+@media only screen and (max-width: 768px) {
+    .links {
+        flex-direction: column !important;
+        width: 100%;
+    }
+    .outer-carousel {
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    .carousel {
+        height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    .main {
+        flex-direction: column !important;
+        flex-shrink: 0;
+    }
+    .main > div {
+        min-height: min-content;
+        height: 100vw;
+        flex-basis: auto;
+    }
+    .main-text-div {
+        height: min-content !important;
+    }
+    .main-text {
+        padding: 10px;
+        height: min-content;
+    }
+    .service-row {
+        flex-direction: column !important;
+    }
+    .service-text {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-right: 0;
+    }
+    .service-images {
+        width: 100%;
+        margin: 0;
+    }
 }

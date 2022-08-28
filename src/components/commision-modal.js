@@ -24,7 +24,7 @@ const CommisionModal = ({ close }) => {
                         <Input type="email" placeholder="Mail" value={Mail} setValue={setMail} />
                         {/*<Input type="text" placeholder="Wiadomość" value={Message} setValue={setMessage} />*/}
                         <Input type="tel" placeholder="Numer Kontaktowy" value={Number} setValue={setNumber} />
-                        <Input rows={6} textarea value={Message} setValue={setMessage} placeholder="Opis projektu" />
+                        <Input rows={6} textarea value={Message} setValue={setMessage} placeholder="Wiadomość" />
                     </div>
                     <div className="modal-inputs send">
                         <Input type="submit" value="Wyślij" onClick={sendMessage} className="send-input" />

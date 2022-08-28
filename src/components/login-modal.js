@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Input } from "."
-import Logo from "../images/logo-archon.png"
+import Logo from "../images/logo-white.png"
 
 const LoginModal = ({ close }) => {
 

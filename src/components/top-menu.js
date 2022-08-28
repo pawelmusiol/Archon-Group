@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "."
 import Logo from "../images/logo-archon.png"
-import { useDeep } from "./helpers"
+import { useLocation } from '@reach/router'
+import Hamburger from '../images/icons/hamburger-menu.svg'
+import Close from '../images/icons/close.svg'
+//import { StaticImage } from 'gatsby-plugin-image'
 
 const menuData = {
     left: [
@@ -35,16 +38,16 @@ const menuData = {
                     name: "Media",
                     to: "/uslugi/media"
                 },
-                {
+                /* {
                     name: "Finanse",
                     to: "/uslugi/finanse"
-                }
+                } */
             ]
         },
-        {
+        /* {
             name: "Galeria",
             to: "/galeria"
-        },
+        }, */
         {
             name: "Kontakt",
             to: "/kontakt"
@@ -52,21 +55,21 @@ const menuData = {
     ]
 }
 
-const mapLinks = (prefix, link) => {
+const mapLinks = (link, key, location) => {
     if (link.content) {
         return (
-            <div className="link-w-children">
+            <div className="link-w-children" key={key}>
                 <Link to={link.to}>{link.name}</Link>
                 <div className="children-links">
                     {/*<div className="children-links-inner">*/}
-                    {link.content.map(subLink => <Link to={subLink.to}>{subLink.name}</Link>)}
+                    {link.content.map((subLink, key) => <Link to={subLink.to} key={key} active={setActive(subLink.to, location.pathname)}>{subLink.name}</Link>)}
                     {/*</div>*/}
                 </div>
             </div>
         )
     }
     else {
-        return <Link to={link.to}>{link.name}</Link>
+        return <Link to={link.to} active={setActive(link.to, location.pathname)}>{link.name}</Link>
     }
 }
 /**
@@ -88,28 +91,63 @@ const changeClassOnScroll = (topRef) => {
     }
 }
 
+const setActive = (to, path) => {
+    if (to[to.length - 1] !== '/') {
+        to = to + '/'
+    }
+    if (path[path.length - 1] !== '/') {
+        path = path + '/'
+    }
+    if (to === path) {
+        return true
+    }
+    return false
+
+}
+
 const TopMenu = () => {
-    const prefix = useDeep()
     const topRef = useRef()
+    const [Open, setOpen] = useState(false)
+    const location = useLocation()
+    let classes = ''
     useEffect(() => {
         document.addEventListener('scroll', () => changeClassOnScroll(topRef))
     }, [])
 
-    const navLeft = menuData.left.map(link => <Link to={link.to}>{link.name}</Link>)
-    const navRight = menuData.right.map((link) => mapLinks(prefix, link))
+    useEffect(() => {
+        if (Open) {
+            classes = 'menu-show'
+        }
+        else {
+            classes = ''
+        }
+    }, [Open])
+
+    const openMenu = (e) => {
+        if (Open) {
+            setOpen(false)
+        }
+        else {
+            setOpen(true)
+        }
+    }
+
+    const navLeft = menuData.left.map((link, key) => <Link to={link.to} key={key} active={setActive(link.to, location.pathname)}>{link.name}</Link>)
+    const navRight = menuData.right.map((link, key) => mapLinks(link, key, location))
     return (
         <div>
             <header>
-                <nav ref={topRef}>
+                <nav ref={topRef} className={Open ? 'menu-show' : ''}>
                     <div className="left">
                         {navLeft}
                     </div>
-                    {/*<div className="logo-div">
-                        <img src={Logo} className="logo-top"/>
-    </div>*/}
+
                     <div className="right">
+                        <img className="logo-top-bar" src='../images/logo-archon.png' />
                         {navRight}
                     </div>
+                    <img src={Hamburger} className="hamburger" onClick={openMenu} />
+                    <img src={Close} className="close" onClick={openMenu} />
                 </nav>
             </header>
         </div>

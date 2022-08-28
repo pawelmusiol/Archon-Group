@@ -9,12 +9,16 @@ module.exports = {
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                name:"images",
+                name: "images",
                 path: path.join(__dirname, `src`, `images`),
             }
         },
+        {
+            resolve: 'gatsby-plugin-page-transitions',
+        },
         `gatsby-plugin-sass`,
-        `gatsby-transformer-sharp`, 
-        `gatsby-plugin-sharp`
-        ]
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        /* 'gatsby-plugin-image', */
+    ]
 }

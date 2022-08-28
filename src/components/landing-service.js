@@ -1,24 +1,29 @@
-import React from 'react'
-import { Scroll } from "."
+import React, { useState } from 'react'
+import { Scroll, Link, CommisionModal } from "."
 
-const LandingService = () => {
+const LandingService = ({ children, text, title, modal, right }) => {
+    const [ModalOpen, setModalOpen] = useState(false)
     return (
-        <div className="landing landing-service">
-            <div className="landing-content">
-                {/*<img src={Logo} className="logo" alt="logo" />*/}
-                <div>
-                    <div className="landing-text">
-
-                        <h1>Lorem Ipsum Dolor</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        {/*<Link to="#" onClick={OpenModal} className="landing-button">Umów spotkanie</Link>*/}
+        <>
+            <div className={`landing landing-service ${right ? 'landing-right' : ''}`}>
+                {children}
+                <div className={`landing-content`}>
+                    <div>
+                        <div className="landing-text">
+                            <h1>{title}</h1>
+                            <h2>{text}</h2>
+                            {modal &&
+                                <Link to="#" onClick={() => setModalOpen(true)} className="landing-button">Zleć Projekt</Link>
+                            }
+                        </div>
+                        <Scroll />
                     </div>
-                    <Scroll />
                 </div>
             </div>
-        </div>
+            {ModalOpen &&
+                <CommisionModal close={() => setModalOpen(false)} />
+            }
+        </>
     )
 }
 

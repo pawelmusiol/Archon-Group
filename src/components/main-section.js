@@ -1,27 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '.'
-import Image1 from "../images/example1.jpg"
-import Image2 from "../images/example2.jpg"
+import Image1 from "../images/main-left.jpeg"
+import Image2 from "../images/main-right.jpeg"
 
 const MainSection = () => {
+
+
     return (
         <Section className="main" row>
             <div>
-                <img src={Image1} />
-                <p className="image-caption">Sed ut perspiciatis unde omnis iste natus error sit</p>
+                <img src={Image1} className="main-image" />
+                {/* <p className="image-caption">Sed ut perspiciatis unde omnis iste natus error sit</p> */}
             </div>
-            <div>
+            <div className="main-text-div">
                 <div className="main-text">
-                    <h1>
-                        Lorem ipsum dolor sit amet
-                    </h1>
+                    <h1>Archon Group</h1>
                     <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                        <span className="first-letter">1</span>
+                        Rozlicz z Nami Swoją księgowość i kadry pracownicze. Kontroluj stan Swojej firmy oraz wydatki i terminy urzędowych zobowiązań.
+                    </p>
+                    <p>
+                        <span className="first-letter">2</span>
+                        Stwórz unikatowy wizerunek Swojej firmy. Wykreuj Swoją działalność w sieci.
+                    </p>
+                    <p>
+                        <span className="first-letter">3</span>
+                        Zabezpiecz to co dla Ciebie najważniejsze kompleksowymi produktami Ubezpieczeniowymi.
+                    </p>
+                    <p>
+                        <span className="first-letter">4</span>
+                        Śmiało wkrocz w nowy rozdział i znajdź z nami finansowanie. Zainwestuj w swoją przyszłość.
                     </p>
                 </div>
             </div>
             <div>
-                <img src={Image2} />
+                <img src={Image2} className="main-image" style={{}} />
             </div>
         </Section>
     )
